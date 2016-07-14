@@ -8,7 +8,9 @@ export default function reducer(state = Map(), action) {
     case ('NEXT'):
       return next(state);
     case ('VOTE'):
-      return vote(state, action.entry);
+      return state.update('vote', (voteState) => {
+        return vote(voteState, action.entry);
+      });
     default:
       return state;
   }
